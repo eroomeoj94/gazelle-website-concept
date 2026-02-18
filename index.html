@@ -433,45 +433,65 @@
         /* ============================================================
            WELCOME
         ============================================================ */
-        .welcome { background: var(--white); }
+        .welcome { background: var(--gray-light); }
 
-        .welcome-grid {
+        .feature-panels {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .feature-panel {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            min-height: 420px;
         }
 
-        @media (max-width: 768px) {
-            .welcome-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        .feature-panel-img {
+            overflow: hidden;
         }
 
-        .welcome-body p {
-            font-size: 1rem;
-            color: var(--gray);
-            line-height: 1.85;
-            margin-bottom: 1rem;
+        .feature-panel-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
-        .welcome-body p:last-child { margin-bottom: 0; }
+        .feature-panel-body {
+            background: var(--white);
+            padding: 3rem 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .feature-panel-body .section-body {
+            max-width: none;
+            margin-bottom: 1.5rem;
+        }
 
         .welcome-actions {
             display: flex;
             gap: 0.75rem;
             flex-wrap: wrap;
-            margin-top: 2rem;
+            margin-top: 1.75rem;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
+            gap: 1rem;
+            margin: 1.5rem 0;
         }
 
         .stat-card {
             background: var(--gray-light);
             border-radius: var(--radius);
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem;
             border-left: 4px solid var(--red);
         }
 
@@ -488,6 +508,22 @@
             color: var(--gray-mid);
             margin-top: 0.3rem;
             font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .feature-panel {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .feature-panel-img {
+                height: 260px;
+                order: -1;
+            }
+
+            .feature-panel-body {
+                padding: 2rem;
+            }
         }
 
         /* ============================================================
@@ -800,39 +836,80 @@
 ================================================================ -->
 <section class="welcome" id="welcome">
     <div class="container">
-        <div class="welcome-grid">
+        <div class="feature-panels">
 
-            <div class="welcome-left">
-                <span class="section-label">About us</span>
-                <h2 class="section-title">Run with<br>the Gazelles</h2>
-                <div class="welcome-body">
-                    <p>We are a friendly running club based in Norwich, Norfolk. We welcome all standards, from first-time runners to serious high-level athletes.</p>
-                    <p>Our aim is to help you be the best runner you can be — through coaching, encouragement and support.</p>
-                    <p>We offer potential new members up to a <strong>1 month free trial</strong> to see if it's right for you. No commitment required; just come and run with us.</p>
+            <!-- Panel 1: All abilities — image left, content right -->
+            <div class="feature-panel">
+                <div class="feature-panel-img">
+                    <img src="images/233.jpg" alt="Norfolk Gazelles runners">
                 </div>
-                <div class="welcome-actions">
-                    <a href="#" class="btn btn-red">Membership info</a>
-                    <a href="#training" class="btn btn-outline-dark">Training sessions</a>
+                <div class="feature-panel-body">
+                    <span class="section-label">About us</span>
+                    <h2 class="section-title">Run with<br>the Gazelles</h2>
+                    <p class="section-body">We are a friendly running club based in Norwich, Norfolk, welcoming all standards — from first-time runners to serious competitive athletes. Our aim is to help you be the best runner you can be, through coaching, encouragement and support.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">All</div>
+                            <div class="stat-label">Abilities welcome</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1 mo</div>
+                            <div class="stat-label">Free trial for new members</div>
+                        </div>
+                    </div>
+                    <div class="welcome-actions">
+                        <a href="#" class="btn btn-red">Membership info</a>
+                        <a href="#training" class="btn btn-outline-dark">Training sessions</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="welcome-right">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value">All</div>
-                        <div class="stat-label">Abilities welcome</div>
+            <!-- Panel 2: Track access — content left, image right -->
+            <div class="feature-panel">
+                <div class="feature-panel-body">
+                    <span class="section-label">Training</span>
+                    <h2 class="section-title">Professional<br>Track Access</h2>
+                    <p class="section-body">We train at the UEA SportPark — a world-class athletics facility with a full-size running track in the heart of Norwich. Coached track sessions run once a week, with a social run the other.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">2×</div>
+                            <div class="stat-label">Runs per week</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">UEA</div>
+                            <div class="stat-label">Professional track facility</div>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-value">2×</div>
-                        <div class="stat-label">Weekly sessions</div>
+                    <div class="welcome-actions">
+                        <a href="#training" class="btn btn-red">View training sessions</a>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-value">1 mo</div>
-                        <div class="stat-label">Free trial for new members</div>
+                </div>
+                <div class="feature-panel-img">
+                    <img src="images/492.jpg" alt="UEA SportPark running track">
+                </div>
+            </div>
+
+            <!-- Panel 3: Social & inclusive — image left, content right -->
+            <div class="feature-panel">
+                <div class="feature-panel-img">
+                    <img src="images/award.jpg" alt="Norfolk Gazelles awards evening">
+                </div>
+                <div class="feature-panel-body">
+                    <span class="section-label">Community</span>
+                    <h2 class="section-title">More Than<br>Just Running</h2>
+                    <p class="section-body">We're a social, inclusive club where everyone belongs. From our annual awards evening to regular parkrun meetups and club socials, there's always something going on beyond the track.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">Annual</div>
+                            <div class="stat-label">Awards evening</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">Park<br>run</div>
+                            <div class="stat-label">Regular club meetups</div>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-value">UEA</div>
-                        <div class="stat-label">Professional track facility</div>
+                    <div class="welcome-actions">
+                        <a href="#" class="btn btn-red">Find out more</a>
                     </div>
                 </div>
             </div>
@@ -927,7 +1004,6 @@
     <div class="container">
         <div class="footer-inner">
             <div class="footer-logo">
-                <img src="https://www.norfolkgazelles.co.uk/img/gazelles-txt.png" alt="Norfolk Gazelles">
             </div>
             <div class="footer-social">
                 <a href="http://www.facebook.com/groups/250914812227/" target="_blank" title="Facebook">
