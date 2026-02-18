@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Norfolk Gazelles — a friendly running club based in Norwich, Norfolk, welcoming all abilities.">
+    <title>Norfolk Gazelles | Home</title>
+    <link rel="icon" href="https://www.norfolkgazelles.co.uk/favicon.ico" type="image/x-icon">
+
+    <!-- Modern fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Slick carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+
+    <!-- jQuery + Slick JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+
+    <style>
+        /* ============================================================
+           RESET & TOKENS
+        ============================================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --red:        #dc2025;
+            --red-dark:   #b01a1e;
+            --black:      #0f0f0f;
+            --gray-dark:  #222;
+            --gray:       #666;
+            --gray-mid:   #999;
+            --gray-light: #f5f5f5;
+            --white:      #fff;
+            --radius:     10px;
+            --shadow:     0 4px 24px rgba(0,0,0,0.10);
+            --ease:       0.3s cubic-bezier(.4,0,.2,1);
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-dark);
+            background: var(--white);
+            line-height: 1.65;
+        }
+
+        img { max-width: 100%; display: block; }
+        a   { text-decoration: none; }
+
+        /* ============================================================
+           NAVBAR
+        ============================================================ */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 2.5rem;
+            /* dark-to-transparent gradient so logo/links are always legible over photos */
+            /*background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 100%);*/
+            transition: background var(--ease), box-shadow var(--ease), padding var(--ease);
+        }
+
+        .navbar.scrolled {
+            background: var(--white) !important; /* overrides the gradient */
+            box-shadow: 0 1px 0 rgba(0,0,0,.08), var(--shadow);
+            padding: 0.75rem 2.5rem;
+        }
+
+        /* Hide the whole brand at the top — visibility:hidden collapses the img placeholder */
+        .navbar-brand {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--ease), visibility var(--ease);
+        }
+        .navbar.scrolled .navbar-brand {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .navbar-brand img {
+            height: 44px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 0.125rem;
+        }
+
+        .nav-links > li { position: relative; }
+
+        .nav-links > li > a {
+            display: block;
+            padding: 0.5rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.88);
+            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+            transition: color var(--ease), background var(--ease), text-shadow var(--ease);
+        }
+
+        .navbar.scrolled .nav-links > li > a { color: var(--gray-dark); text-shadow: none; }
+
+        .nav-links > li > a:hover,
+        .nav-links > li.active > a {
+            background: rgba(255,255,255,0.18);
+            color: var(--white);
+        }
+
+        .navbar.scrolled .nav-links > li > a:hover,
+        .navbar.scrolled .nav-links > li.active > a {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        /* Dropdown */
+        .nav-links .dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 0.75rem);
+            left: 0;
+            min-width: 220px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            list-style: none;
+            padding: 0.5rem 0;
+            z-index: 200;
+        }
+
+        .nav-links > li:hover .dropdown { display: block; }
+
+        .dropdown a {
+            display: block;
+            padding: 0.55rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--gray-dark);
+            transition: background var(--ease), color var(--ease);
+        }
+
+        .dropdown a:hover {
+            background: var(--gray-light);
+            color: var(--red);
+        }
+
+        /* Hamburger */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: background var(--ease);
+        }
+
+        .navbar.scrolled .nav-toggle span { background: var(--black); }
+
+        @media (max-width: 860px) {
+            .nav-toggle { display: flex; }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: var(--white);
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0.75rem 1.5rem 1.5rem;
+                box-shadow: var(--shadow);
+                gap: 0;
+            }
+
+            .nav-links.open { display: flex; }
+
+            .nav-links > li > a {
+                color: var(--gray-dark) !important;
+                padding: 0.65rem 0;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(0,0,0,.06);
+            }
+
+            .nav-links > li > a:hover { background: none; color: var(--red) !important; }
+
+            .nav-links .dropdown {
+                position: static;
+                box-shadow: none;
+                padding-left: 1rem;
+                display: none;
+                border-radius: 0;
+            }
+
+            .nav-links > li:hover .dropdown { display: none; }
+            .nav-links > li.open .dropdown  { display: block; }
+        }
+
+        /* ============================================================
+           HERO
+        ============================================================ */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 620px;
+            overflow: hidden;
+            /* carousel1.jpg as instant fallback — covers any gap before slick initialises */
+            background: url('images/118.jpg') center/cover no-repeat;
+        }
+
+        .hero-carousel { position: absolute; inset: 0; }
+
+        .hero-carousel .slick-slider,
+        .hero-carousel .slick-list,
+        .hero-carousel .slick-track,
+        .hero-carousel .slick-slide,
+        .hero-carousel .slick-slide > div {
+            height: 100%;
+        }
+
+        .hero-carousel .slick-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.15) 0%,   /* light at top — images show through fully */
+                rgba(0,0,0,0.10) 40%,
+                rgba(0,0,0,0.60) 100%  /* dark at bottom for text legibility */
+            );
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            color: var(--white);
+        }
+
+        .hero-eyebrow {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 800;
+            line-height: 0.95;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+        }
+
+        .hero-title em {
+            font-style: normal;
+            color: var(--red);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 400;
+            max-width: 520px;
+            line-height: 1.75;
+            opacity: 0.88;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: rgba(255,255,255,0.55);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hero-scroll i {
+            font-size: 1rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(6px); }
+        }
+
+        /* ============================================================
+           BUTTONS
+        ============================================================ */
+        .btn {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+        }
+
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.18); }
+
+        .btn-red {
+            background: var(--red);
+            color: var(--white);
+        }
+        .btn-red:hover { background: var(--red-dark); color: var(--white); }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.72);
+        }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.14); color: var(--white); }
+
+        .btn-outline-dark {
+            background: transparent;
+            color: var(--gray-dark);
+            border: 2px solid #d8d8d8;
+        }
+        .btn-outline-dark:hover { border-color: var(--red); color: var(--red); }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--red);
+        }
+        .btn-white:hover { background: #f0f0f0; color: var(--red-dark); }
+
+        /* ============================================================
+           LAYOUT HELPERS
+        ============================================================ */
+        .container {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section { padding: 5.5rem 0; }
+
+        .section-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 0.6rem;
+        }
+
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--black);
+            line-height: 1.05;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-body {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        /* ============================================================
+           WELCOME
+        ============================================================ */
+        .welcome { background: var(--white); }
+
+        .welcome-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+
+        .welcome-body p {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.85;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-body p:last-child { margin-bottom: 0; }
+
+        .welcome-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .stat-card {
+            background: var(--gray-light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border-left: 4px solid var(--red);
+        }
+
+        .stat-value {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--red);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            color: var(--gray-mid);
+            margin-top: 0.3rem;
+            font-weight: 500;
+        }
+
+        /* ============================================================
+           ANNOUNCEMENT BANNER
+        ============================================================ */
+        .announcement {
+            background: var(--red);
+            padding: 2.25rem 0;
+        }
+
+        .announcement-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .announcement-text { color: var(--white); }
+
+        .announcement-text h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+
+        .announcement-text p {
+            font-size: 0.9rem;
+            opacity: 0.82;
+        }
+
+        /* ============================================================
+           TRAINING
+        ============================================================ */
+        .training { background: var(--gray-light); }
+
+        .training-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .training-header .section-body { margin: 0 auto; }
+
+        .training-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 700px) {
+            .training-grid { grid-template-columns: 1fr; }
+        }
+
+        .training-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .training-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--red);
+        }
+
+        .training-day {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--red);
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .training-time {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-mid);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 1.75rem;
+            margin-top: 0.35rem;
+        }
+
+        .training-location {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            background: var(--gray-light);
+            border-radius: var(--radius);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .training-location .icon {
+            color: var(--red);
+            font-size: 1rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .loc-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+        }
+
+        .loc-detail {
+            font-size: 0.8rem;
+            color: var(--gray-mid);
+            margin-top: 0.1rem;
+        }
+
+        .training-card > p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.75;
+            flex: 1;
+            margin-bottom: 1.75rem;
+        }
+
+        /* ============================================================
+           CONTACT BOX
+        ============================================================ */
+        .contact-box {
+            background: var(--black);
+            border-radius: 14px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+        }
+
+        .contact-box h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-box p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 520px;
+            margin: 0 auto 1.75rem;
+            line-height: 1.75;
+        }
+
+        .email-link {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--red);
+            letter-spacing: 0.01em;
+        }
+
+        .email-link:hover { color: #ff4b4f; }
+
+        /* ============================================================
+           FOOTER
+        ============================================================ */
+        footer {
+            background: var(--black);
+            padding: 2.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-logo img {
+            height: 32px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.55;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.1rem;
+        }
+
+        .footer-social a {
+            color: rgba(255,255,255,0.45);
+            font-size: 1.35rem;
+            transition: color var(--ease);
+        }
+
+        .footer-social a:hover { color: var(--white); }
+
+        .footer-copy {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.35);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================================================================
+     NAVBAR
+================================================================ -->
+<nav class="navbar" id="navbar">
+    <a href="#" class="navbar-brand">
+        <img src="https://www.norfolkgazelles.co.uk/img/gazelles-txt.png" alt="Norfolk Gazelles">
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Membership</a></li>
+        <li>
+            <a href="#">Our Races &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="#">Valentine's 10K</a></li>
+                <li><a href="#">Alex Moore Relay</a></li>
+                <li><a href="#">Norfolk Gazelles 'Big Stampede'</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">News &amp; Events &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="#">Club News</a></li>
+                <li><a href="#">Coming Up</a></li>
+                <li><a href="#">Couch To 5K Programme</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Club &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="#">Contacts</a></li>
+                <li><a href="#">Target Races</a></li>
+                <li><a href="#">Cross Country</a></li>
+                <li><a href="#">Training</a></li>
+                <li><a href="#">Session Booking</a></li>
+                <li><a href="#">Book Awards Evening Place</a></li>
+                <li><a href="#">Committee</a></li>
+                <li><a href="#">Coaching Staff</a></li>
+                <li><a href="#">Club Kit</a></li>
+                <li><a href="#">Club Standards</a></li>
+                <li><a href="#">Shared Calendar</a></li>
+                <li><a href="#">Club Policy Documents</a></li>
+                <li><a href="#">Welcome Brochure</a></li>
+                <li><a href="#">John's Running Calculator</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<!-- ================================================================
+     HERO — full-screen photo carousel with overlay
+================================================================ -->
+<section class="hero">
+    <div class="hero-carousel" id="hero-carousel">
+        <div><img src="images/118.jpg"          alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/1621.jpg"   alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/1656.jpg"   alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/1927.jpg"   alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/2.jpg"      alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/2101.jpg"   alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/231.jpg"    alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/233.jpg"    alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/31.jpg"     alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/447.jpg"    alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/492.jpg"    alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/7.jpg"      alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/809.jpg"    alt="Norfolk Gazelles"></div>
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <span class="hero-eyebrow">Norwich, Norfolk</span>
+        <h1 class="hero-title">Norfolk<br><em>Gazelles</em></h1>
+        <p class="hero-subtitle">
+            A friendly running club welcoming all abilities — from first-time runners to serious high-level athletes.
+        </p>
+        <div class="hero-actions">
+            <a href="#" class="btn btn-red">Join the Club</a>
+            <a href="#training" class="btn btn-outline-white">View Training</a>
+        </div>
+    </div>
+
+    <div class="hero-scroll">
+        <span>Scroll</span>
+        <i class="fa fa-chevron-down"></i>
+    </div>
+</section>
+
+<!-- ================================================================
+     WELCOME
+================================================================ -->
+<section class="welcome" id="welcome">
+    <div class="container">
+        <div class="welcome-grid">
+
+            <div class="welcome-left">
+                <span class="section-label">About us</span>
+                <h2 class="section-title">Run with<br>the Gazelles</h2>
+                <div class="welcome-body">
+                    <p>We are a friendly running club based in Norwich, Norfolk. We welcome all standards, from first-time runners to serious high-level athletes.</p>
+                    <p>Our aim is to help you be the best runner you can be — through coaching, encouragement and support.</p>
+                    <p>We offer potential new members up to a <strong>1 month free trial</strong> to see if it's right for you. No commitment required; just come and run with us.</p>
+                </div>
+                <div class="welcome-actions">
+                    <a href="#" class="btn btn-red">Membership info</a>
+                    <a href="#training" class="btn btn-outline-dark">Training sessions</a>
+                </div>
+            </div>
+
+            <div class="welcome-right">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">All</div>
+                        <div class="stat-label">Abilities welcome</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">2×</div>
+                        <div class="stat-label">Weekly sessions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1 mo</div>
+                        <div class="stat-label">Free trial for new members</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">UEA</div>
+                        <div class="stat-label">Professional track facility</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================
+     ANNOUNCEMENT BANNER
+================================================================ -->
+<div class="announcement">
+    <div class="container">
+        <div class="announcement-inner">
+            <div class="announcement-text">
+                <h3>Online Session Booking Now Available</h3>
+                <p>Gazelle members can book training sessions online. Please cancel if you can no longer attend.</p>
+            </div>
+            <a href="#" class="btn btn-white">Book a Session &rarr;</a>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================
+     TRAINING
+================================================================ -->
+<section class="training" id="training">
+    <div class="container">
+
+        <div class="training-header">
+            <span class="section-label">Training</span>
+            <h2 class="section-title">Weekly Sessions</h2>
+            <p class="section-body">
+                Booking is required for all sessions — please do not attend unless you have a confirmed place.
+                Cancel in advance if your plans change.
+            </p>
+        </div>
+
+        <div class="training-grid">
+
+            <!-- Monday -->
+            <div class="training-card">
+                <div class="training-day">Monday</div>
+                <div class="training-time">Arrive by 6:45 pm latest</div>
+                <div class="training-location">
+                    <i class="fa fa-map-marker icon"></i>
+                    <div>
+                        <div class="loc-name">UEA SportPark Track</div>
+                        <div class="loc-detail">University of East Anglia, Norwich</div>
+                    </div>
+                </div>
+                <p>Track sessions released monthly. Check the booking system for the current session description and to secure your place. Coaching provided for all abilities.</p>
+                <a href="#" class="btn btn-red">Book Monday Session</a>
+            </div>
+
+            <!-- Thursday -->
+            <div class="training-card">
+                <div class="training-day">Thursday</div>
+                <div class="training-time">Prompt 6:30 pm start</div>
+                <div class="training-location">
+                    <i class="fa fa-map-marker icon"></i>
+                    <div>
+                        <div class="loc-name">Waitrose Car Park, Eaton</div>
+                        <div class="loc-detail">Norwich, Norfolk</div>
+                    </div>
+                </div>
+                <p>Out &amp; back runs announced weekly via Facebook and email. Sessions vary week to week — follow the club socials or sign up to the mailing list to stay updated.</p>
+                <a href="#" class="btn btn-red">Book Thursday Session</a>
+            </div>
+
+        </div>
+
+        <!-- New member contact -->
+        <div class="contact-box">
+            <h3>New Member? Get in Touch</h3>
+            <p>
+                To book your first taster session, email us with which session you'd like to attend,
+                your current parkrun or 5K time, and emergency contact details.
+            </p>
+            <a href="mailto:training@norfolkgazelles.co.uk" class="email-link">
+                training@norfolkgazelles.co.uk
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================================================================
+     FOOTER
+================================================================ -->
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <img src="https://www.norfolkgazelles.co.uk/img/gazelles-txt.png" alt="Norfolk Gazelles">
+            </div>
+            <div class="footer-social">
+                <a href="http://www.facebook.com/groups/250914812227/" target="_blank" title="Facebook">
+                    <i class="fa fa-facebook-square"></i>
+                </a>
+                <a href="https://www.instagram.com/norfolkgazelles/" target="_blank" title="Instagram">
+                    <i class="fa fa-instagram"></i>
+                </a>
+            </div>
+            <div class="footer-copy">&copy; 2025 Norfolk Gazelles Running Club</div>
+        </div>
+    </div>
+</footer>
+
+<!-- ================================================================
+     SCRIPTS
+================================================================ -->
+<script>
+    // Navbar scroll state
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function () {
+        navbar.classList.toggle('scrolled', window.scrollY > 80);
+    });
+
+    // Mobile menu toggle
+    document.getElementById('nav-toggle').addEventListener('click', function () {
+        document.getElementById('nav-links').classList.toggle('open');
+    });
+
+    // Hero carousel
+    $(document).ready(function () {
+        $('#hero-carousel').slick({
+            lazyLoad:      'ondemand',
+            autoplay:      true,
+            autoplaySpeed: 4500,
+            speed:         1200,
+            fade:          true,
+            cssEase:       'ease-in-out',
+            dots:          false,
+            arrows:        false,
+            pauseOnHover:  false
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,418 @@
+@<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Norfolk Gazelles">
+
+    <title>Norfolk Gazelles | Home</title>
+    <link rel="icon" href="https://www.norfolkgazelles.co.uk/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://www.norfolkgazelles.co.uk/favicon.ico" type="image/x-icon">
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans|Open+Sans+Condensed:300,700|Alegreya+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap & Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+            integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA=="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.16/dist/vue.global.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@2.0.9/dist/tippy.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+
+    <!-- ===================== INLINED: bootstrap-spacing.css ===================== -->
+    <style type="text/css">
+        .m-0 { margin:0!important; }
+        .m-1 { margin:.25rem!important; }
+        .m-2 { margin:.5rem!important; }
+        .m-3 { margin:1rem!important; }
+        .m-4 { margin:1.5rem!important; }
+        .m-5 { margin:3rem!important; }
+        .mt-0 { margin-top:0!important; } .mr-0 { margin-right:0!important; } .mb-0 { margin-bottom:0!important; } .ml-0 { margin-left:0!important; } .mx-0 { margin-left:0!important;margin-right:0!important; } .my-0 { margin-top:0!important;margin-bottom:0!important; }
+        .mt-1 { margin-top:.25rem!important; } .mr-1 { margin-right:.25rem!important; } .mb-1 { margin-bottom:.25rem!important; } .ml-1 { margin-left:.25rem!important; } .mx-1 { margin-left:.25rem!important;margin-right:.25rem!important; } .my-1 { margin-top:.25rem!important;margin-bottom:.25rem!important; }
+        .mt-2 { margin-top:.5rem!important; } .mr-2 { margin-right:.5rem!important; } .mb-2 { margin-bottom:.5rem!important; } .ml-2 { margin-left:.5rem!important; } .mx-2 { margin-right:.5rem!important;margin-left:.5rem!important; } .my-2 { margin-top:.5rem!important;margin-bottom:.5rem!important; }
+        .mt-3 { margin-top:1rem!important; } .mr-3 { margin-right:1rem!important; } .mb-3 { margin-bottom:1rem!important; } .ml-3 { margin-left:1rem!important; } .mx-3 { margin-right:1rem!important;margin-left:1rem!important; } .my-3 { margin-bottom:1rem!important;margin-top:1rem!important; }
+        .mt-4 { margin-top:1.5rem!important; } .mr-4 { margin-right:1.5rem!important; } .mb-4 { margin-bottom:1.5rem!important; } .ml-4 { margin-left:1.5rem!important; } .mx-4 { margin-right:1.5rem!important;margin-left:1.5rem!important; } .my-4 { margin-top:1.5rem!important;margin-bottom:1.5rem!important; }
+        .mt-5 { margin-top:3rem!important; } .mr-5 { margin-right:3rem!important; } .mb-5 { margin-bottom:3rem!important; } .ml-5 { margin-left:3rem!important; } .mx-5 { margin-right:3rem!important;margin-left:3rem!important; } .my-5 { margin-top:3rem!important;margin-bottom:3rem!important; }
+        .mt-auto { margin-top:auto!important; } .mr-auto { margin-right:auto!important; } .mb-auto { margin-bottom:auto!important; } .ml-auto { margin-left:auto!important; } .mx-auto { margin-right:auto!important;margin-left:auto!important; } .my-auto { margin-bottom:auto!important;margin-top:auto!important; }
+        .p-0 { padding:0!important; } .p-1 { padding:.25rem!important; } .p-2 { padding:.5rem!important; } .p-3 { padding:1rem!important; } .p-4 { padding:1.5rem!important; } .p-5 { padding:3rem!important; }
+        .pt-0 { padding-top:0!important; } .pr-0 { padding-right:0!important; } .pb-0 { padding-bottom:0!important; } .pl-0 { padding-left:0!important; } .px-0 { padding-left:0!important;padding-right:0!important; } .py-0 { padding-top:0!important;padding-bottom:0!important; }
+        .pt-1 { padding-top:.25rem!important; } .pr-1 { padding-right:.25rem!important; } .pb-1 { padding-bottom:.25rem!important; } .pl-1 { padding-left:.25rem!important; } .px-1 { padding-left:.25rem!important;padding-right:.25rem!important; } .py-1 { padding-top:.25rem!important;padding-bottom:.25rem!important; }
+        .pt-2 { padding-top:.5rem!important; } .pr-2 { padding-right:.5rem!important; } .pb-2 { padding-bottom:.5rem!important; } .pl-2 { padding-left:.5rem!important; } .px-2 { padding-right:.5rem!important;padding-left:.5rem!important; } .py-2 { padding-top:.5rem!important;padding-bottom:.5rem!important; }
+        .pt-3 { padding-top:1rem!important; } .pr-3 { padding-right:1rem!important; } .pb-3 { padding-bottom:1rem!important; } .pl-3 { padding-left:1rem!important; } .py-3 { padding-bottom:1rem!important;padding-top:1rem!important; } .px-3 { padding-right:1rem!important;padding-left:1rem!important; }
+        .pt-4 { padding-top:1.5rem!important; } .pr-4 { padding-right:1.5rem!important; } .pb-4 { padding-bottom:1.5rem!important; } .pl-4 { padding-left:1.5rem!important; } .px-4 { padding-right:1.5rem!important;padding-left:1.5rem!important; } .py-4 { padding-top:1.5rem!important;padding-bottom:1.5rem!important; }
+        .pt-5 { padding-top:3rem!important; } .pr-5 { padding-right:3rem!important; } .pb-5 { padding-bottom:3rem!important; } .pl-5 { padding-left:3rem!important; } .px-5 { padding-right:3rem!important;padding-left:3rem!important; } .py-5 { padding-top:3rem!important;padding-bottom:3rem!important; }
+    </style>
+
+    <!-- ===================== INLINED: custom.css ===================== -->
+    <style type="text/css">
+        html { font-size: 16px; }
+        body { font-family: "Alegreya Sans", sans-serif; font-size: 11px; font-size: 0.6875rem; }
+        h2 { font-size: 30px; font-size: 1.875rem; font-weight: 700; }
+        p { font-size: 14px; font-size: 0.875rem; }
+        nav { font-family: "Open Sans Condensed", sans-serif; font-weight: 700; }
+        .navbar-default { background-image: none; background-color: #eee; }
+        .navbar-default .navbar-nav > li { font-size: 16px; font-size: 1rem; }
+        .navbar-collapse { padding-left: 0; padding-right: 0; }
+        .navbar { border-radius: 0; margin-bottom: 10px; }
+        @media (max-width: 760px) { ul.navbar-nav { padding-left: 10px; } }
+
+        .banner { background-color: #dc2025; height: 6.25rem; }
+        .banner, .footer { border-top: 2px solid black; border-bottom: 2px solid black; }
+        .banner img { padding: 1rem; max-width: 100%; max-height: 100%; }
+
+        .content { margin-top: 30px; }
+
+        #page-container { position: relative; min-height: 100vh; }
+        #content-wrap { padding-bottom: 40px; }
+
+        footer { position: absolute; bottom: 0; width: 100%; height: 40px; }
+        .footer { background-color: #dc2025; line-height: 40px; vertical-align: middle; }
+        .footer .copyright { color: #fff; text-align: right; }
+        .footer .social { font-size: 2em; }
+        .footer .social i { color: white; }
+        .footer .social a { padding: 0.2em; }
+
+        .left-block, .right-block { padding-left: 30px; padding-right: 30px; }
+        @media (max-width: 760px) { .left-block, .right-block { padding-left: 15px; padding-right: 15px; } }
+
+        h2.page-title { margin-top: 0; color: black; }
+
+        #intro { margin-bottom: 30px; width: 100%; padding-bottom: 40px; border-bottom: 2px solid #ddd; }
+        #intro h2.page-title { margin-top: 30px; margin-bottom: 30px; font-family: 'Open Sans Condensed', sans-serif; font-size: 40px; font-size: 2.25rem; }
+        #intro p { font-family: 'Open Sans Condensed', sans-serif; font-size: 20px; font-size: 1.2rem; line-height: 1.5; }
+        @media (max-width: 760px) { #intro { width: 100%; } }
+
+        #next-race { margin-bottom: 20px; padding: 20px; border: 5px solid #AAA; background-color: #EEE; margin-left: -15px; }
+        #next-race h3 { margin-top: 0; }
+        #next-race p { font-size: 16px; font-size: 1rem; }
+        #next-race .next-race { color: #880000; font-weight: bold; }
+        #next-race .next-race a { color: inherit; text-decoration: none; }
+        @media (max-width: 760px) { #next-race { margin-left: 0; } }
+
+        ul.homenews, ul.fixtureslist1, ul.fixtureslist2, ul.racenews, ul.racenewsarchive { list-style-type: circle; padding-left: 1em; }
+        ul.homenews li, ul.fixtureslist1 li, ul.fixtureslist2 li, ul.racenews li, ul.racenewsarchive li { font-size: 14px; font-size: 0.875rem; margin-bottom: 0.25rem; }
+        ul.homenews li p, ul.fixtureslist1 li p, ul.fixtureslist2 li p, ul.racenews li p, ul.racenewsarchive li p { margin-bottom: 3px; }
+        #race-reports ul.racenews li { margin-bottom: 1.25rem; }
+        ul.racenews li { font-size: 14px; font-size: 0.875rem; margin-bottom: 0.25rem; }
+        ul.racenews li div, ul.racenews li p { margin-bottom: 0.25rem; }
+
+        .headline { font-size: 18px; font-size: 1.125rem; margin-top: 1rem; margin-bottom: 0.2rem; }
+        .headline a { color: inherit; }
+        .headline a:hover { cursor: default; text-decoration: none; }
+
+        ul.fixtureslist1 p { margin-bottom: 0; }
+        ul.fixtureslist1 p.race-details { font-size: 11px; font-size: 0.6875rem; }
+
+        table.committee { border-collapse: collapse; }
+        table.committee th, table.committee td { border: 1px solid #ddd; padding: 0.2rem; }
+        table.account { border-collapse: collapse; }
+        table.account th, table.account td { border: 1px solid #ddd; padding: 0.2rem; }
+
+        .training-schedule { border-bottom: 3px solid #AAAAAA; margin-bottom: 10px; padding-bottom: 10px; }
+        .training-schedule ul { list-style-type: circle; padding-left: 1em; }
+        .training-schedule .training-session { margin-bottom: 10px; }
+        .training-schedule .training-session .training-date { font-size: 16px; font-size: 1rem; margin-bottom: 0; }
+        .training-schedule .training-session .training-text { font-size: 14px; font-size: 0.875rem; margin-bottom: 0; }
+        .training-schedule .training-session .training-description p, .training-schedule .training-session .training-description { font-size: 12px; font-size: 0.75rem; margin-bottom: 0; }
+
+        .course-map { max-width: 100%; }
+        .history li { font-size: 14px; font-size: 0.875rem; }
+
+        .sponsors { margin-top: 40px; margin-bottom: 20px; padding-top: 20px; border-top: 2px solid #BBB; }
+        .sponsors img { padding-top: 10px; padding-bottom: 10px; max-width: 60%; }
+
+        .author { font-style: italic; }
+        .newsreport div { text-indent: 1em; }
+        #membership #form-holder { background-color: #F6F6F6; }
+        p.who { font-size: 12px; margin: 0; margin-right: 1em; text-align: right; color: #999; }
+    </style>
+
+    <!-- ===================== INLINED: Page-specific styles ===================== -->
+    <style type="text/css">
+        #group-photo { margin-bottom: 20px; }
+        #frontpagetwitterbox { max-width: 100%; }
+        #group-photo img { max-width: 100%; }
+        .upcoming-title { font-weight: bold; margin-bottom: 0; }
+        .author { font-style: italic; }
+        .headline-item { margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid silver; }
+    </style>
+
+    <!-- ===================== INLINED: main.js ===================== -->
+    <script type="text/javascript">
+        Date.prototype.withoutTime = function () {
+            var d = new Date(this);
+            d.setHours(0, 0, 0, 0);
+            return d;
+        };
+
+        function diffDays(d1, d2) {
+            var ndays;
+            var tv1 = d1.valueOf();
+            var tv2 = d2.valueOf();
+            ndays = (tv2 - tv1) / 1000 / 86400;
+            ndays = Math.round(ndays - 0.5);
+            return ndays;
+        }
+
+        if (!String.prototype.includes) {
+            String.prototype.includes = function(search, start) {
+                'use strict';
+                if (search instanceof RegExp) { throw TypeError('first argument must not be a RegExp'); }
+                if (start === undefined) { start = 0; }
+                return this.indexOf(search, start) !== -1;
+            };
+        }
+    </script>
+
+    <!-- ===================== INLINED: Page init script ===================== -->
+    <script type="text/javascript">
+        function configureMenu() {
+            var path = window.location.href;
+            $('.navbar li a').each(function () {
+                if (this.href === path) { $(this).closest("li").addClass('active'); }
+            });
+            $('.navbar ul.dropdown-menu a').each(function () {
+                if (this.href === path) { $(this).closest("ul.dropdown-menu").closest("li").addClass('active'); }
+            });
+        }
+
+        $(document).ready(function () {
+            configureMenu();
+
+            // Initialise the photo carousel
+            $('#group-photo').slick({
+                lazyLoad: 'ondemand',
+                autoplay: true,
+                autoplaySpeed: 3000,
+                dots: false,
+                arrows: true
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="page-container">
+    <div id="content-wrap">
+
+        <!-- ===== HEADER / BANNER ===== -->
+        <div id="top">
+            <div class="container-fluid">
+                <div class="row" style="margin-bottom:0">
+                    <a href="#">
+                        <div class="col-xs-12 banner">
+                            <img src="https://www.norfolkgazelles.co.uk/img/gazelles-txt.png" alt="Norfolk Gazelles text logo"/>
+                            <img src="https://www.norfolkgazelles.co.uk/img/gazelle-red.png" alt="Gazelle logo"/>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ===== NAVIGATION ===== -->
+            <nav id="nav" class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#">Membership</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">Our Races <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Valentine's 10K</a></li>
+                                    <li><a href="#">Alex Moore Relay</a></li>
+                                    <li><a href="#">Norfolk Gazelles 'Big Stampede'</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">News and Events <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Club News</a></li>
+                                    <li><a href="#">Coming Up</a></li>
+                                    <li><a href="#">Couch To 5K Programme</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">Club <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Contacts</a></li>
+                                    <li><a href="#">Target Races</a></li>
+                                    <li><a href="#">Cross Country</a></li>
+                                    <li><a href="#">Training</a></li>
+                                    <li><a href="#">Session Booking</a></li>
+                                    <li><a href="#">Book Awards Evening Place</a></li>
+                                    <li><a href="#">Committee</a></li>
+                                    <li><a href="#">Coaching Staff</a></li>
+                                    <li><a href="#">Club Kit</a></li>
+                                    <li><a href="#">Club Standards</a></li>
+                                    <li><a href="#">Shared Calendar</a></li>
+                                    <li><a href="#">Club Policy Documents</a></li>
+                                    <li><a href="#">Welcome Brochure</a></li>
+                                    <li><a href="#">John's Running Calculator</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right user-menu">
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Admin Area</a></li>
+                                    <li><a href="#">Editing Area</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <div id="main">
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <!-- LEFT COLUMN -->
+                        <div class="col-md-6 left-block">
+
+                            <div id="intro">
+                                <h2 class="page-title">Welcome to the Norfolk Gazelles</h2>
+                                <p>We are a friendly running club based in Norwich, Norfolk. We welcome all standards, from first-time runners to serious high-level athletes.</p>
+                                <p>Our aim is to help you be the best runner you can be, through coaching encouragement and support.</p>
+                                <p>If you decide to join us, you'll find the details on our <a href="#">membership page</a>.</p>
+                                <p>We offer potential new members up to a 1 month free trial to see if its for you.&nbsp;&nbsp;</p>
+                                <p>If you wish to book on a training session please email <strong>training@norfolkgazelles.co.uk</strong> including which session you would like to book on, current park run or 5k time and emergency contact details.</p>
+
+                                <h2>Training schedules</h2>
+
+                                <h3>Monday Night Training</h3>
+                                <p><strong>Sessions currently held at UEA SportPark track, please arrive by 6.45pm latest.</strong></p>
+                                <p>Sessions released monthly, booking required to attend.</p>
+                                <p>For session description and to book yourself onto a session please use the following link <strong><a href="#">GAZELLES BOOKING</a></strong></p>
+                                <p>Please do not attend unless you have booked and have a place.</p>
+
+                                <h3>Thursday Sessions</h3>
+                                <h4><strong>Waitrose car park, Eaton. Prompt 18.30 start.</strong></h4>
+                                <p>Thursday out &amp; back sessions announced weekly via facebook and email, booking required to attend.</p>
+                                <p>To book yourself onto a session please use the following link <strong><a href="#">GAZELLES BOOKING</a></strong></p>
+                                <p>Please do not attend unless you have booked and have a place.</p>
+                            </div>
+
+                            <div id="next-race">
+                                <div class="headline-item">
+                                    <h3 class="next-race">Gazelles - Book your training!!</h3>
+                                    <p class="next-race-content">
+                                        Gazelle members now have the facility to book their training sessions online.
+                                        Please head <a href="#">here</a> to book each week.
+                                    </p>
+                                    <p>Please remember to cancel your session if you can no longer make it.</p>
+                                </div>
+                            </div>
+
+                            <div id="race-reports">
+                                <h3>Race reports</h3>
+                                <ul class="homenews">
+                                    <!-- Race report items will appear here -->
+                                </ul>
+                            </div>
+
+                            <div id="race-news">
+                                <h3>Race news</h3>
+                                <ul class="homenews">
+                                    <!-- Race news items will appear here -->
+                                </ul>
+                            </div>
+
+                            <p><i>More race news on the <a href="#">Club News</a> page</i></p>
+
+                            <div id="club-announcements">
+                                <h3>Club news and announcements</h3>
+                                <ul class="homenews">
+                                    <!-- Club announcements will appear here -->
+                                </ul>
+                            </div>
+
+                        </div><!-- /left-block -->
+
+                        <!-- RIGHT COLUMN -->
+                        <div class="col-md-6 right-block">
+
+                            <!-- Photo carousel — images loaded from the live site -->
+                            <div id="group-photo" class="carousel">
+                                <div><img src="https://www.norfolkgazelles.co.uk/img/carousel/carousel1.jpg" alt="Carousel Image 1"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel2.jpg" alt="Carousel Image 2"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel3.jpg" alt="Carousel Image 3"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel4.jpg" alt="Carousel Image 4"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel5.jpg" alt="Carousel Image 5"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel6.jpg" alt="Carousel Image 6"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel7.jpg" alt="Carousel Image 7"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel8.jpg" alt="Carousel Image 8"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel9.jpg" alt="Carousel Image 9"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel10.jpg" alt="Carousel Image 10"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel11.jpg" alt="Carousel Image 11"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel12.jpg" alt="Carousel Image 12"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel13.jpg" alt="Carousel Image 13"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel14.jpg" alt="Carousel Image 14"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel15.jpg" alt="Carousel Image 15"></div>
+                                <div><img data-lazy="https://www.norfolkgazelles.co.uk/img/carousel/carousel16.jpg" alt="Carousel Image 16"></div>
+                            </div>
+
+                            <div id="frontpagetwitterbox">
+                                <!-- Social feed placeholder -->
+                            </div>
+
+                        </div><!-- /right-block -->
+
+                    </div><!-- /row -->
+                </div><!-- /container-fluid -->
+            </div><!-- /content -->
+        </div><!-- /main -->
+
+    </div><!-- /content-wrap -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="sticky-footer">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row footer">
+                    <div class="col-xs-4 social">
+                        <a target="_blank" title="Norfolk Gazelles Facebook page"
+                           href="http://www.facebook.com/groups/250914812227/"><i class="fa fa-facebook-square"></i></a>
+                        <a target="_blank" title="Norfolk Gazelles Instagram feed"
+                           href="https://www.instagram.com/norfolkgazelles/"><i class="fa fa-instagram"></i></a>
+                    </div>
+                    <div class="col-xs-8 copyright">&copy; 2021 Norfolk Gazelles Running Club</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div><!-- /page-container -->
+</body>
+</html>
