@@ -64,31 +64,35 @@
             align-items: center;
             justify-content: space-between;
             padding: 1.25rem 2.5rem;
-            /* dark-to-transparent gradient so logo/links are always legible over photos */
-            /*background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 100%);*/
+            background: var(--red);
             transition: background var(--ease), box-shadow var(--ease), padding var(--ease);
         }
 
         .navbar.scrolled {
-            background: var(--white) !important; /* overrides the gradient */
-            box-shadow: 0 1px 0 rgba(0,0,0,.08), var(--shadow);
+            background: var(--red-dark) !important;
+            box-shadow: 0 1px 0 rgba(0,0,0,.15), var(--shadow);
             padding: 0.75rem 2.5rem;
         }
 
-        /* Hide the whole brand at the top — visibility:hidden collapses the img placeholder */
         .navbar-brand {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity var(--ease), visibility var(--ease);
-        }
-        .navbar.scrolled .navbar-brand {
             opacity: 1;
             visibility: visible;
+            transition: opacity var(--ease), visibility var(--ease);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
         }
 
         .navbar-brand img {
             height: 44px;
             width: auto;
+        }
+
+        .navbar-brand .brand-icon {
+            height: 40px;
         }
 
         .nav-links {
@@ -107,21 +111,18 @@
             font-size: 0.9rem;
             font-weight: 500;
             color: rgba(255,255,255,0.88);
-            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-            transition: color var(--ease), background var(--ease), text-shadow var(--ease);
+            transition: color var(--ease), background var(--ease);
         }
-
-        .navbar.scrolled .nav-links > li > a { color: var(--gray-dark); text-shadow: none; }
 
         .nav-links > li > a:hover,
         .nav-links > li.active > a {
-            background: rgba(255,255,255,0.18);
+            background: rgba(0,0,0,0.18);
             color: var(--white);
         }
 
         .navbar.scrolled .nav-links > li > a:hover,
         .navbar.scrolled .nav-links > li.active > a {
-            background: var(--red);
+            background: rgba(0,0,0,0.18);
             color: var(--white);
         }
 
@@ -129,7 +130,7 @@
         .nav-links .dropdown {
             display: none;
             position: absolute;
-            top: calc(100% + 0.75rem);
+            top: 100%;
             left: 0;
             min-width: 220px;
             background: var(--white);
@@ -137,6 +138,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.15);
             list-style: none;
             padding: 0.5rem 0;
+            padding-top: calc(0.5rem + 0.75rem);
             z-index: 200;
         }
 
@@ -174,10 +176,7 @@
             height: 2px;
             background: var(--white);
             border-radius: 2px;
-            transition: background var(--ease);
         }
-
-        .navbar.scrolled .nav-toggle span { background: var(--black); }
 
         @media (max-width: 860px) {
             .nav-toggle { display: flex; }
@@ -186,7 +185,7 @@
                 display: none;
                 position: absolute;
                 top: 100%; left: 0; right: 0;
-                background: var(--white);
+                background: var(--red-dark);
                 flex-direction: column;
                 align-items: stretch;
                 padding: 0.75rem 1.5rem 1.5rem;
@@ -197,20 +196,33 @@
             .nav-links.open { display: flex; }
 
             .nav-links > li > a {
-                color: var(--gray-dark) !important;
+                color: rgba(255,255,255,0.9) !important;
                 padding: 0.65rem 0;
                 border-radius: 0;
-                border-bottom: 1px solid rgba(0,0,0,.06);
+                border-bottom: 1px solid rgba(255,255,255,0.12);
             }
 
-            .nav-links > li > a:hover { background: none; color: var(--red) !important; }
+            .nav-links > li > a:hover { background: rgba(0,0,0,0.15); color: var(--white) !important; }
 
             .nav-links .dropdown {
                 position: static;
                 box-shadow: none;
-                padding-left: 1rem;
+                padding: 0 0 0.25rem 1rem;
                 display: none;
                 border-radius: 0;
+                background: transparent;
+            }
+
+            .nav-links .dropdown a {
+                color: rgba(255,255,255,0.8) !important;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+                padding: 0.5rem 0;
+                font-size: 0.875rem;
+            }
+
+            .nav-links .dropdown a:hover {
+                background: rgba(0,0,0,0.15);
+                color: var(--white) !important;
             }
 
             .nav-links > li:hover .dropdown { display: none; }
@@ -694,6 +706,7 @@
 ================================================================ -->
 <nav class="navbar" id="navbar">
     <a href="#" class="navbar-brand">
+        <img src="https://www.norfolkgazelles.co.uk/img/gazelle-red.png" alt="" class="brand-icon">
         <img src="https://www.norfolkgazelles.co.uk/img/gazelles-txt.png" alt="Norfolk Gazelles">
     </a>
 
@@ -703,23 +716,6 @@
 
     <ul class="nav-links" id="nav-links">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Membership</a></li>
-        <li>
-            <a href="#">Our Races &#9662;</a>
-            <ul class="dropdown">
-                <li><a href="#">Valentine's 10K</a></li>
-                <li><a href="#">Alex Moore Relay</a></li>
-                <li><a href="#">Norfolk Gazelles 'Big Stampede'</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">News &amp; Events &#9662;</a>
-            <ul class="dropdown">
-                <li><a href="#">Club News</a></li>
-                <li><a href="#">Coming Up</a></li>
-                <li><a href="#">Couch To 5K Programme</a></li>
-            </ul>
-        </li>
         <li>
             <a href="#">Club &#9662;</a>
             <ul class="dropdown">
@@ -739,6 +735,23 @@
                 <li><a href="#">John's Running Calculator</a></li>
             </ul>
         </li>
+        <li>
+            <a href="#">Our Races &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="#">Valentine's 10K</a></li>
+                <li><a href="#">Alex Moore Relay</a></li>
+                <li><a href="#">Norfolk Gazelles 'Big Stampede'</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">News &amp; Events &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="#">Club News</a></li>
+                <li><a href="#">Coming Up</a></li>
+                <li><a href="#">Couch To 5K Programme</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Membership</a></li>
     </ul>
 </nav>
 
@@ -747,6 +760,9 @@
 ================================================================ -->
 <section class="hero">
     <div class="hero-carousel" id="hero-carousel">
+        <div><img data-lazy="images/31.jpg"     alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/447.jpg"    alt="Norfolk Gazelles"></div>
+        <div><img data-lazy="images/492.jpg"    alt="Norfolk Gazelles"></div>
         <div><img src="images/118.jpg"          alt="Norfolk Gazelles"></div>
         <div><img data-lazy="images/1621.jpg"   alt="Norfolk Gazelles"></div>
         <div><img data-lazy="images/1656.jpg"   alt="Norfolk Gazelles"></div>
@@ -755,9 +771,6 @@
         <div><img data-lazy="images/2101.jpg"   alt="Norfolk Gazelles"></div>
         <div><img data-lazy="images/231.jpg"    alt="Norfolk Gazelles"></div>
         <div><img data-lazy="images/233.jpg"    alt="Norfolk Gazelles"></div>
-        <div><img data-lazy="images/31.jpg"     alt="Norfolk Gazelles"></div>
-        <div><img data-lazy="images/447.jpg"    alt="Norfolk Gazelles"></div>
-        <div><img data-lazy="images/492.jpg"    alt="Norfolk Gazelles"></div>
         <div><img data-lazy="images/7.jpg"      alt="Norfolk Gazelles"></div>
         <div><img data-lazy="images/809.jpg"    alt="Norfolk Gazelles"></div>
     </div>
@@ -942,6 +955,21 @@
     // Mobile menu toggle
     document.getElementById('nav-toggle').addEventListener('click', function () {
         document.getElementById('nav-links').classList.toggle('open');
+    });
+
+    // Mobile dropdown toggles
+    document.querySelectorAll('.nav-links > li > a').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            var li = this.parentElement;
+            if (li.querySelector('.dropdown') && window.innerWidth <= 860) {
+                e.preventDefault();
+                var isOpen = li.classList.contains('open');
+                document.querySelectorAll('.nav-links > li').forEach(function (el) {
+                    el.classList.remove('open');
+                });
+                if (!isOpen) li.classList.add('open');
+            }
+        });
     });
 
     // Hero carousel
