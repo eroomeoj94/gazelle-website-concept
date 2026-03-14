@@ -9,13 +9,250 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="canonical" href="https://www.norfolkgazelles.co.uk/">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link href='https://fonts.googleapis.com/css?family=PT+Sans|Open+Sans+Condensed:300,700|Alegreya+Sans:400,400italic,700,700italic'
-          rel='stylesheet' type='text/css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/layouts/bootstrap-spacing.css">
     <link rel="stylesheet" href="/css/layouts/custom.css">
+
+    <style>
+        :root {
+            --red:        #dc2025;
+            --red-dark:   #b01a1e;
+            --black:      #0f0f0f;
+            --gray-dark:  #222;
+            --gray:       #666;
+            --gray-mid:   #999;
+            --gray-light: #f5f5f5;
+            --white:      #fff;
+            --radius:     10px;
+            --shadow:     0 4px 24px rgba(0,0,0,0.10);
+            --ease:       0.3s cubic-bezier(.4,0,.2,1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-dark);
+            background: var(--white);
+        }
+
+        a   { text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        /* Bootstrap .navbar overrides */
+        .navbar {
+            border: none;
+            border-radius: 0;
+            min-height: auto;
+            margin-bottom: 0;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 2.5rem;
+            background: var(--red);
+            transition: background var(--ease), box-shadow var(--ease), padding var(--ease);
+        }
+
+        .navbar.scrolled {
+            background: var(--red-dark) !important;
+            box-shadow: 0 1px 0 rgba(0,0,0,.15), var(--shadow);
+            padding: 0.75rem 2.5rem;
+        }
+
+        .navbar-brand {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity var(--ease), visibility var(--ease);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .navbar-brand img {
+            height: 44px;
+            width: auto;
+        }
+
+        .navbar-brand .brand-icon {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 0.125rem;
+        }
+
+        .nav-links > li { position: relative; }
+
+        .nav-links > li > a {
+            display: block;
+            padding: 0.5rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.88);
+            transition: color var(--ease), background var(--ease);
+        }
+
+        .nav-links > li > a:hover,
+        .nav-links > li.active > a {
+            background: rgba(0,0,0,0.18);
+            color: var(--white);
+        }
+
+        .navbar.scrolled .nav-links > li > a:hover,
+        .navbar.scrolled .nav-links > li.active > a {
+            background: rgba(0,0,0,0.18);
+            color: var(--white);
+        }
+
+        /* Dropdown */
+        .nav-links .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 220px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            list-style: none;
+            padding: 0.5rem 0;
+            padding-top: calc(0.5rem + 0.75rem);
+            z-index: 200;
+        }
+
+        .nav-links > li:hover .dropdown { display: block; }
+
+        .nav-links .dropdown a {
+            display: block;
+            padding: 0.55rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--gray-dark);
+            transition: background var(--ease), color var(--ease);
+        }
+
+        .nav-links .dropdown a:hover {
+            background: var(--gray-light);
+            color: var(--red);
+        }
+
+        /* Hamburger */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+        }
+
+        @media (max-width: 860px) {
+            .nav-toggle { display: flex; }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: var(--red-dark);
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0.75rem 1.5rem 1.5rem;
+                box-shadow: var(--shadow);
+                gap: 0;
+            }
+
+            .nav-links.open { display: flex; }
+
+            .nav-links > li > a {
+                color: rgba(255,255,255,0.9) !important;
+                padding: 0.65rem 0;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255,255,255,0.12);
+            }
+
+            .nav-links > li > a:hover { background: rgba(0,0,0,0.15); color: var(--white) !important; }
+
+            .nav-links .dropdown {
+                position: static;
+                box-shadow: none;
+                padding: 0 0 0.25rem 1rem;
+                display: none;
+                border-radius: 0;
+                background: transparent;
+            }
+
+            .nav-links .dropdown a {
+                color: rgba(255,255,255,0.8) !important;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+                padding: 0.5rem 0;
+                font-size: 0.875rem;
+            }
+
+            .nav-links .dropdown a:hover {
+                background: rgba(0,0,0,0.15);
+                color: var(--white) !important;
+            }
+
+            .nav-links > li:hover .dropdown { display: none; }
+            .nav-links > li.open .dropdown  { display: block; }
+        }
+
+        #main { padding-top: 84px; }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 2.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.1rem;
+        }
+
+        .footer-social a {
+            color: rgba(255,255,255,0.45);
+            font-size: 1.35rem;
+            transition: color var(--ease);
+        }
+
+        .footer-social a:hover { color: var(--white); }
+
+        .footer-copy {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.35);
+        }
+    </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
@@ -35,24 +272,18 @@
     <script type="text/javascript">
 
         function configureMenu() {
-
-            var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
-            $('.navbar li a').each(function () {
-
+            var path = window.location.href;
+            $('.nav-links a').each(function () {
                 if (this.href === path) {
-                    $(this).closest("li").addClass('active');
+                    var $dropdown = $(this).closest('.dropdown');
+                    if ($dropdown.length) {
+                        $dropdown.closest('li').addClass('active');
+                    } else {
+                        $(this).closest('li').addClass('active');
+                    }
                 }
             });
-
-            $('.navbar ul.dropdown-menu a').each(function () {
-
-                if (this.href === path) {
-                    $(this).closest("ul.dropdown-menu").closest("li").addClass('active');
-                }
-            });
-
             tippy('[tippy]');
-
         }
 
         function logOut() {
@@ -65,11 +296,9 @@
                     $.removeCookie('login', { path: '/' });
                     localStorage.removeItem("login");
                     location.href = "/";
-
                 },
                 error: (x, status, error) => {
                 }
-
             });
         }
 
@@ -81,7 +310,31 @@
             }
             configureMenu();
 
+            // Navbar scroll state
+            var navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function () {
+                navbar.classList.toggle('scrolled', window.scrollY > 80);
+            });
 
+            // Mobile menu toggle
+            document.getElementById('nav-toggle').addEventListener('click', function () {
+                document.getElementById('nav-links').classList.toggle('open');
+            });
+
+            // Mobile dropdown toggles
+            document.querySelectorAll('.nav-links > li > a').forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    var li = this.parentElement;
+                    if (li.querySelector('.dropdown') && window.innerWidth <= 860) {
+                        e.preventDefault();
+                        var isOpen = li.classList.contains('open');
+                        document.querySelectorAll('.nav-links > li').forEach(function (el) {
+                            el.classList.remove('open');
+                        });
+                        if (!isOpen) li.classList.add('open');
+                    }
+                });
+            });
         });
 
     </script>
@@ -92,159 +345,78 @@
 
 </head>
 <body>
+<nav class="navbar" id="navbar">
+    <a href="/" class="navbar-brand">
+        <img src="/img/gazelle-red.png" alt="" class="brand-icon">
+        <img src="/img/gazelles-txt.png" alt="Norfolk Gazelles">
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+        <li><a href="/index.php">Home</a></li>
+        <li>
+            <a href="#">Our Races &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="/valentine-10k.php">Valentine's 10K</a></li>
+                <li><a href="/alex-moore-relay.php">Alex Moore Relay</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">News &amp; Events &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="/coming-up.php">Coming Up</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Club &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="/contacts.php">Contacts</a></li>
+                <li><a href="/cross-country.php">Cross Country</a></li>
+                <li><a href="/training.php">Training</a></li>
+                <li><a href="/training-sessions.php">Session Booking</a></li>
+                <li><a href="/committee.php">Committee</a></li>
+                <li><a href="/coaching-staff.php">Coaching Staff</a></li>
+                <li><a href="/kit.php">Club Kit</a></li>
+                <li><a href="/club-rankings.php">Club Standards</a></li>
+                <li><a href="/shared-calendar.php">Shared Calendar</a></li>
+                <li><a href="/policies.php">Club Policy Documents</a></li>
+                <li><a href="/documents/about-the-norfolk-gazelles.pdf" target="_blank">Welcome Brochure</a></li>
+                <li><a href="/calculator.php">John's Running Calculator</a></li>
+            </ul>
+        </li>
+        <li><a href="/membership.php">Membership</a></li>
+        <li>
+            <a href="#">Admin &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="/admin.php">Admin Area</a></li>
+                <li><a href="/couch/">Editing Area</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
 <div id="page-container">
     <div id="content-wrap">
-<div id="top">
-    <div class="container-fluid">
-        <div class="row" style="margin-bottom:0">
-            <a href="/">
-                <div class="col-xs-12 banner"><img src="/img/gazelles-txt.png"/><img src="/img/gazelle-red.png"/></div>
-
-            </a>
-        </div>
-    </div>
-    <nav id="nav" class="navbar navbar-default">
-        <div class="container-fluid">
-
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-            </div>
-
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-
-                    <li><a href="/index.php">Home</a></li>
-
-                    <li><a href="/membership.php">Membership</a></li>
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Our Races <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/valentine-10k.php">Valentine's 10K</a></li>
-                            
-                            <li><a href="/alex-moore-relay.php">Alex Moore Relay</a></li>
-                           
-                            <!--<li><a href="/big-stampede.php">Norfolk Gazelles 'Big Stampede'</a></li>-->
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">News and Events <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-<!--                            <li><a href="/news.php">Club News</a></li>-->
-                            <li><a href="/coming-up.php">Coming Up</a></li>
-<!--                            <li><a href="/couch-to-5k.php">Couch To 5K Programme</a></li>-->
-
-                        </ul>
-                    </li>
-
-
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Club <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/contacts.php">Contacts</a></li>
-<!--                            <li><a href="/target-races.php">Target Races</a></li>-->
-                            <li><a href="/cross-country.php">Cross Country</a></li>
-                            <li><a href="/training.php">Training</a></li>
-                            <li><a href="/training-sessions.php">Session Booking</a></li>
-<!--                            <li><a href="/awards-evening.php">Book Awards Evening Place</a></li>-->
-                            <li><a href="/committee.php">Committee</a></li>
-                            <li><a href="/coaching-staff.php">Coaching Staff</a></li>
-
-                            <li><a href="/kit.php">Club Kit</a></li>
-                            <li><a href="/club-rankings.php">Club Standards</a></li>
-                            <li><a href="/shared-calendar.php">Shared Calendar</a></li>
-                            <li><a href="/policies.php">Club Policy Documents</a></li>
-                            <li><a href="/documents/about-the-norfolk-gazelles.pdf" target="_blank">Welcome Brochure</a></li>
-                            <li><a href="/calculator.php">John's
-                                Running Calculator</a></li>
-                            <!--<li><a href="/round-norfolk-relay.php">Round Norfolk Relay</a></li>-->
-
-                        </ul>
-                    </li>
-
-
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right user-menu">
-                    <!--
-                    <li>
-
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Members
-                            <span class="caret"></span></a>
-
-                        <ul class="dropdown-menu">
-                             <li><a href="/members.php">Members' Area</a></li>
-                        </ul>
-
-
-                    </li>
-                    -->
-                    <li>
-
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Admin
-                            <span class="caret"></span></a>
-
-                        <ul class="dropdown-menu">
-                            <li><a href="/admin.php">Admin Area</a></li>
-                            <li><a href="/couch/">Editing Area</a></li>
-                        </ul>
-
-
-                    </li>
-
-                </ul>
-
-            </div><!-- /.navbar-collapse -->
-
-        </div><!-- /.container-fluid -->
-    </nav>
-</div>
 
 <div id="main">
-<cms:if my_login>
-    <cms:show my_login/>
-</cms:if>
-<div class="content">
-    <div class="container-fluid">
-
-
-        <div class="row">
-            <cms:show my_content/>
-        </div>
+    <cms:if my_login><cms:show my_login/></cms:if>
+    <div class="content">
+        <cms:show my_content/>
     </div>
-</div>
 </div>
     </div>
 <footer id="sticky-footer">
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row footer">
-                <div class="col-xs-4 social">
-                    <a target="_blank" title="Norfolk Gazelles Facebook page"
-                       href="http://www.facebook.com/groups/250914812227/"><i class="fa fa-facebook-square"></i></a>
-                   <!-- <a target="_blank" title="Norfolk Gazelles Twitter feed" href="https://twitter.com/NorfolkGazelles"><i
-                            class="fa fa-twitter-square"></i></a>-->
-                    <a target="_blank" title="Norfolk Gazelles Instagram feed"
-                       href="https://www.instagram.com/norfolkgazelles/"><i class="fa fa-instagram"></i></a>
-
-                </div>
-                <div class="col-xs-8 copyright">© 2021 Norfolk Gazelles Running Club</div>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-social">
+                <a href="http://www.facebook.com/groups/250914812227/" target="_blank" title="Norfolk Gazelles Facebook page">
+                    <i class="fa fa-facebook-square"></i>
+                </a>
+                <a href="https://www.instagram.com/norfolkgazelles/" target="_blank" title="Norfolk Gazelles Instagram feed">
+                    <i class="fa fa-instagram"></i>
+                </a>
             </div>
+            <div class="footer-copy">&copy; 2025 Norfolk Gazelles Running Club</div>
         </div>
     </div>
 </footer>
@@ -264,5 +436,3 @@
 </body>
 
 </html>
-
-
